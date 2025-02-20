@@ -1,4 +1,6 @@
 import React from 'react';
+import img from '../img/not-flag.png';
+
 const countryCodes = {
     "Russia": "RU",
     "Germany": "DE",
@@ -69,15 +71,15 @@ export default ({ code, size, margin }: {margin?:string, code:string, size?: {wi
         if(countryCodes[code]) return countryCodes[code];
         else return code;
     }
-
+    
     return(
         <img style={{
             width: size?.width ?? "25px",
             height: size?.height ?? "25px",
             marginTop: margin ?? '4px'
         }}
-            src={`img/flags/${chek(code)}.svg`}
-            onError={(e)=> e.target.src = 'img/not-flag.png'}
+            src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${chek(code)}.svg`}
+            onError={(e)=> e.target.src = img}
         />
     );
 }

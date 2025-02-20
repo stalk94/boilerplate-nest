@@ -12,13 +12,15 @@ export class JwtAuthGuard implements CanActivate {
     // 403 статус при не авторизованном
     canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
         const request = context.switchToHttp().getRequest();
+        const tokenCockie = request.cookies['token'];
 
-        const authHeader = request.headers.authorization;
-        if(!authHeader) return false;
+        if(tokenCockie) request.headers.authorization = `Bearer ${tokenCockie}`;
+        if(!request.headers.authorization) return false;
         
-        const token = authHeader.split(' ')[1];     // Получаем токен из "Bearer <token>"
+        const token = request.headers.authorization.split(' ')[1];     // Получаем токен из "Bearer <token>"
+        
         if(!token) return false;                    // Токен отсутствует
-        
+        if(token === 'undefined') return false; 
         
         try {
             const decoded = this.jwtService.verify(token);  // Валидация токена

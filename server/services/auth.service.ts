@@ -11,9 +11,10 @@ export class AuthService {
 	}
 
 	// Генерация JWT токена
-	async generateJwtToken(login: string) {
+	async generateJwtToken(login: string, role: 'user'|'admin') {
 		const payload = { 
-			login
+			login,
+			role: role ?? 'user'
 		}
 
 		return this.jwtService.sign(payload);
@@ -21,11 +22,9 @@ export class AuthService {
 	// Валидация пароля
 	async validateUser(login: string, pass: string): Promise<any> {
 		const user = await this.userService.getUserByLogin(login);
-
+		
 		if(user) {
-			const hashedPassword = await bcrypt.hash(pass, 10);
-			const isMatch = await bcrypt.compare(hashedPassword, user.password);
-
+			const isMatch = await bcrypt.compare(pass, user.password);
 
 			if(isMatch) return user;
 			else return null;

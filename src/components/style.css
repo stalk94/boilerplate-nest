@@ -52,3 +52,15 @@
     margin-top: auto; /* Прижимаем иконку к низу */
     padding-top: 10px;
 }
+
+/* Sidebar */
+.SidebarContent {
+    background-color: rgb(51, 51, 51);
+}
+.SidebarHeader {
+    background-color: rgb(51, 51, 51);
+}
+.SidebarFooter {
+    background-color: rgb(51, 51, 51);
+    border-top: 1px dotted gray;
+}

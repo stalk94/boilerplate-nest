@@ -13,13 +13,12 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
     componentDidCatch(error: Error, errorInfo: any) {
         //console.error("Ошибка в react:", error, errorInfo.componentStack);
         const data = {
-            type: 'react',
             name: error.name,
             message: error.message,
             stack: errorInfo.componentStack
         }
         
-        send('error', { time: new Date().toUTCString(), ...data }, 'POST');
+        send('error', { time: new Date().toUTCString(), type: 'react', ...data }, 'POST');
     }
 
     render() {

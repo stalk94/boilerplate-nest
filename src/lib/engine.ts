@@ -1,3 +1,4 @@
+import { APIEndpoints } from "../types/global.js";
 import EventEmiter from "./emiter";
 
 
@@ -8,14 +9,11 @@ export const EVENT = new EventEmiter();
 
 
 
-/**
- * 
- * @param {string} url 
- * @param {*} data 
- * @param {'GET'|'POST'} metod 
- * @returns 
- */
-export async function send(url: string, data: any, metod: 'GET'|'POST') {
+export async function send<T extends keyof APIEndpoints>(
+    url: T, 
+    data: APIEndpoints[T]['request'],
+    metod: APIEndpoints[T]['method']
+): Promise<APIEndpoints[T]['response']> {
     const dataServer = {
         method: metod ?? 'POST',
         credentials: 'same-origin',
@@ -36,15 +34,14 @@ window.onerror =(message, source, lineno, colno, error)=> {
     let position = `${lineno}:${colno}`;
 
     const data = {
-        type: 'global',
         name: error.name,
-        message,
+        message: String(message),
         position,
         source,
         stack: error.stack
     }
     
-    send('error', { time: new Date().toUTCString(), ...data }, 'POST');
+    send('error', { time: new Date().toUTCString(), type: 'global', ...data }, 'POST');
 }
 window.addEventListener("unhandledrejection", (event)=> {
     console.error("❌⏳ error: ", event.reason);
