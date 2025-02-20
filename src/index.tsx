@@ -1,3 +1,4 @@
+//import "primereact/resources/themes/md-dark-indigo/theme.css";
 import "primereact/resources/primereact.min.css"; 
 import 'primeicons/primeicons.css';
 import { EVENT, send } from "./lib/engine";
@@ -7,7 +8,10 @@ import ErrorBoundary  from './components/error';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { createRoot } from 'react-dom/client';
 import AlarmPanelManager from "./components/alert";
+import Datatable from "./components/data-table";
+import { Column } from 'primereact/column';
 import './style/index.css';
+
 
 
 function App() {
@@ -38,7 +42,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={
                         <React.Fragment>
-                           
+                            
                         </React.Fragment>
                     } />
                     <Route path="*" element={<Navigate to='/' replace />} />
