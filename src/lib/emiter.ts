@@ -1,6 +1,7 @@
 interface Events {
-    error: (data: { text: string })=> void
-    success: (data: { text: string })=> void
+    error: (text: string)=> void
+    success: (text: string)=> void
+    warn: (text: string)=> void
     exit: (data?: any)=> void
 }
 

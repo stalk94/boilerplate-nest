@@ -89,7 +89,7 @@ const GroopMain =({ items, isColapsed })=> {
 }
 
 
-
+//todo: доработать
 export default function({ open, schema, footer, header, isCollapsed }: PropsSideBar) {
 
     return(

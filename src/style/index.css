@@ -5,7 +5,9 @@
 
 
 body {
+    width: 100%;
     background: rgba(0, 0, 0, 0.688);
+    overflow-x: hidden;
 }
 
 
