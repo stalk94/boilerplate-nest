@@ -8,8 +8,7 @@ import ErrorBoundary  from './components/error';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { createRoot } from 'react-dom/client';
 import AlarmPanelManager from "./components/alert";
-import Datatable from "./components/data-table";
-import { Column } from 'primereact/column';
+import Test from "./components/utils/shop";
 import './style/index.css';
 
 

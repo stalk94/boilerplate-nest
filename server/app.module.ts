@@ -7,6 +7,7 @@ import { UsersService } from './services/user.service';
 import { AppService } from './services/app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { UploadController } from './controllers/upload.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { User } from "./models/user";
 import { join } from 'path';
@@ -37,7 +38,7 @@ const ormEntitys = TypeOrmModule.forFeature([
 
 @Module({
 	imports: [jwt, staticRoot, typeOrm, ormEntitys],
-	controllers: [AppController, AuthController],
+	controllers: [AppController, AuthController, UploadController],
 	providers: [JwtAuthGuard, AuthService, UsersService, AppService],
 })
 export class AppModule {}

@@ -6,9 +6,19 @@
 
 body {
     width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.688);
     overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0;
+    padding: 0;
 }
+.root {
+  width: 100%;
+  height: 100%;
+}
+
+
 
 
 @layer base {
