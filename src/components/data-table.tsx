@@ -11,6 +11,7 @@ export default function({ value, children, header, footer, ...props }: DataTable
     const [scrollHeight, setScrollHeight] = useState<string>();
     const [height, setHeight] = useState<number>();
 
+    
     const getPadding =(element: Element)=> {
         const style = getComputedStyle(element);
         const padding = parseFloat(style.paddingBottom);

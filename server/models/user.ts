@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
 
 
 @Entity()
@@ -14,4 +14,15 @@ export class User {
 
     @Column({ nullable: true })
     role: 'user'|'admin';
+
+    @Column({ type: 'bigint', nullable: true })
+    lastOnlineTimeshtmap: number;
+
+    @Column({ type: 'bigint', nullable: true })
+    registrationTimeshtmap: number;
+
+    @BeforeInsert()
+    setRegistrationTimestamp() {
+        this.registrationTimeshtmap = Date.now();
+    }
 }

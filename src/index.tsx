@@ -3,6 +3,7 @@ import "primereact/resources/primereact.min.css";
 import 'primeicons/primeicons.css';
 import { EVENT, send } from "./lib/engine";
 import React from 'react'
+import { io } from "socket.io-client";
 //import { Calendar, Home, Inbox, Search, Settings, ChevronDown } from "lucide-react";
 import ErrorBoundary  from './components/error';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -19,6 +20,11 @@ function App() {
     const addTaskAlert =(type: "success" | "error" | "warn" | "info", text: string)=> {
         setTaskAlert({type: type, text: text});
     }
+    const connect =(token: string)=> {
+        const socket = io(gurl, {
+            auth: { token: token }
+        });
+    }
 
     React.useEffect(()=> {
         EVENT.on('success', (text)=> addTaskAlert('success', text));
@@ -26,7 +32,10 @@ function App() {
         EVENT.on('warn', (text)=> addTaskAlert('warn', text));
         const token = localStorage.getItem('token');
     
-        if(token) window.token = token;
+        if(token) {
+            window.token = token;
+            connect(token);
+        }
         else if(import.meta.env.DEV) send('auth/login', { login: 'test', password: 'test' }, 'POST').then((res)=> {
             window.token = res.token;
             localStorage.setItem('token', res.token);
@@ -62,20 +71,3 @@ window.addEventListener('beforeinstallprompt', (event)=> {
     event.preventDefault();
     globalThis.deferredPrompt = event;
 });
-
-
-/**
- * <Sb 
-                                open={true}
-                                isCollapsed={isCollapsed}
-                                schema={[{
-                                    type: 'base',
-                                    label: 'test',
-                                    items: [{
-                                        title: 'xro',
-                                        icon: <Home />,
-                                        comand: ()=> console.log('click')
-                                    }]
-                                }]}
-                            />
- */

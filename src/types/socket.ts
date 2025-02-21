@@ -1,16 +1,3 @@
-export type ErrorRequest = {
-    type: 'promise' | 'global' | 'react'
-    name?: string
-    message?: string
-    position?: string
-    source?: string
-    stack?: string
-    reason?: PromiseRejectionEvent
-    time: string
-}
-
-
-//----------------------------------------[🔌 SOCKET]
 export enum SocketEvents {
     // Клиент -> Сервер
     GET_ONLINE_USERS = 'getOnlineUsers',
@@ -19,6 +6,7 @@ export enum SocketEvents {
     // Сервер -> Клиент
     USER_LIST_UPDATE = 'onlineUsersUpdate',
 }
+
 
 // Клиент -> Сервер
 export interface ServerPayloads {

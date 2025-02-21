@@ -27,4 +27,16 @@ export class UsersService {
             }
         });
     }
+    async update(login: string, updatedFields: Partial<User>) {
+        const user = await this.getUserByLogin(login);
+        
+        if(user) {
+            this.usersRepository.update(user.id, updatedFields);
+            //! используем глобальную шину (если будут еще подобные методы то надо создать отдельный emiter)
+            process.emit('update:user', {
+                login: login,
+                updatedFields
+            });
+        }
+    }
 }
