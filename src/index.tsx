@@ -21,7 +21,7 @@ function App() {
         setTaskAlert({type: type, text: text});
     }
     const connect =(token: string)=> {
-        const socket = io(gurl, {
+        window.socket = io(gurl, {
             auth: { token: token }
         });
     }
