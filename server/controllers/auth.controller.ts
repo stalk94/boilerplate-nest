@@ -7,7 +7,7 @@ import * as bcrypt from 'bcrypt';
 @Controller('auth')
 export class AuthController {
     constructor(private authService: AuthService) {
-        
+    
     }
 
     @Post('login')

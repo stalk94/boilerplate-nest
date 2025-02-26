@@ -13,7 +13,7 @@ import Test from "./components/utils/shop";
 import './style/index.css';
 
 
-
+/// 2025-02-25T19:44:27.492Z
 function App() {
     const [taskAlert, setTaskAlert] = React.useState();
 
@@ -35,6 +35,10 @@ function App() {
         if(token) {
             window.token = token;
             connect(token);
+            
+            send('allModels', {}, 'GET').then((res)=> {
+                console.log(res)
+            });
         }
         else if(import.meta.env.DEV) send('auth/login', { login: 'test', password: 'test' }, 'POST').then((res)=> {
             window.token = res.token;

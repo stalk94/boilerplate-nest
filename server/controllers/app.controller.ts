@@ -11,7 +11,7 @@ import * as fs from 'fs';
 @Controller()
 export class AppController {
     constructor(private service: AppService) {
-		
+
 	}
 
     @Get()

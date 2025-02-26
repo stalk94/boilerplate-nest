@@ -3,12 +3,14 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import * as rl from 'express-rate-limit';
+import * as compression from 'compression';
 dotenv.config();
 
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
-	app.enableCors();
+	app.enableCors();				// ?
+	app.use(compression());
 	app.use(cookieParser());
 	app.use(
 		rl.rateLimit({

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+//import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './controllers/app.controller';
 import { AuthController } from './controllers/auth.controller';
 import { AuthService } from './services/auth.service';
@@ -11,8 +11,10 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { UploadController } from './controllers/upload.controller';
 import { OnlineUsersGateway } from './controllers/online-users.gateway';
 import { JwtModule } from '@nestjs/jwt';
-import { User } from "./models/user";
+//import { User } from "./models/user";
 import { join } from 'path';
+import { PrismaModule } from './prisma/prisma.module';
+import { RedisModule } from './redis.module';
 
 
 const jwt = JwtModule.register({
@@ -23,7 +25,9 @@ const staticRoot = ServeStaticModule.forRoot({
 	rootPath: join(__dirname, '..', 'build'),
 	serveRoot: '/'
 });
-const typeOrm = TypeOrmModule.forRoot({
+
+/**
+ * const typeOrm = TypeOrmModule.forRoot({
 	type: 'postgres',   
 	host: 'localhost',       
 	port: 5432,               
@@ -36,10 +40,11 @@ const typeOrm = TypeOrmModule.forRoot({
 const ormEntitys = TypeOrmModule.forFeature([
 	User
 ]);
+ */
 
 
 @Module({
-	imports: [jwt, staticRoot, typeOrm, ormEntitys],
+	imports: [jwt, staticRoot, PrismaModule, RedisModule],
 	controllers: [AppController, AuthController, UploadController],
 	providers: [JwtAuthGuard, AuthService, UsersService, AppService, OnlineUsersGateway, OnlineUsersService],
 })

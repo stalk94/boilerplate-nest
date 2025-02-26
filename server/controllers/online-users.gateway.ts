@@ -4,7 +4,7 @@ import { Server, Socket } from 'socket.io';
 import { JwtService } from '@nestjs/jwt';
 import { OnlineUsersService } from '../services/online-users.service';
 import { UnauthorizedException } from '@nestjs/common';
-import { User } from '../models/user';
+import { User } from '@prisma/client';
 
 
 @WebSocketGateway({ cors: true })

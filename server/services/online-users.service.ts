@@ -17,7 +17,7 @@ export class OnlineUsersService {
     removeUser(login: string) {
         this.onlineUsers.delete(login);
         
-        this.userService.update(login, {lastOnlineTimeshtmap: Date.now()});
+        this.userService.update(login, {updatedAt: new Date()});
     }
     // Получение списка онлайн-пользователей
     getOnlineUsers() {
