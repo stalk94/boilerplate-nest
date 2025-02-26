@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "author": "",
+  "type": "module",
   "license": "UNLICENSED",
   "scripts": {
     "startDev": "nest start --watch",
@@ -28,6 +29,7 @@
     "bcrypt": "^5.1.1",
     "compression": "^1.8.0",
     "cookie-parser": "^1.4.7",
+    "csurf": "^1.11.0",
     "dotenv": "^16.4.7",
     "express-rate-limit": "^7.5.0",
     "ioredis": "^5.5.0",
